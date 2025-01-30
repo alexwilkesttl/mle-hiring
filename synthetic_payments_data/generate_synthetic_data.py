@@ -50,3 +50,5 @@ if __name__ == "__main__":
     df = generate_features(5000)
     df = add_target_col(df)
     summarise_data(df)
+
+    df.to_parquet("./mle_psb_data_v1.parquet")

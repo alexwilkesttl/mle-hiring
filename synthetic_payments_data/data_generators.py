@@ -2,14 +2,14 @@ import numpy as np
 import pandas as pd
 
 
-def payment_currency_code(n):
+def payment_currency_code(n: int) -> np.ndarray:
     return np.random.choice(
         ["EUR", "GBP", "USD", "DKR", "AUD"],
         n
     )
 
 
-def payment_attempt_dt(n):
+def payment_attempt_dt(n: int) -> np.ndarray:
     diffs = np.random.normal(0, 20, n)
     centre_date = pd.Timestamp.now() - pd.Timedelta(days=90)
 
@@ -21,28 +21,28 @@ def payment_attempt_dt(n):
     )
 
 
-def payment_provider(n):
+def payment_provider(n: int) -> np.ndarray:
     return np.random.choice(
         ["provider1", "provider2"],
         n
     )
 
 
-def payment_method(n):
+def payment_method(n: int) -> np.ndarray:
     return np.random.choice(
         ["Card", "ApplePay"],
         n
     )
 
 
-def card_used_before(n):
+def card_used_before(n: int) -> np.ndarray:
     return np.random.choice(
         [1.0, np.nan],
         n
     )
 
 
-def card_expiry_year(n):
+def card_expiry_year(n: int) -> np.ndarray:
     current_year = pd.Timestamp.now().year
 
     return np.random.choice(
@@ -52,13 +52,11 @@ def card_expiry_year(n):
     )
 
 
-def card_expiry_month(n):
-    current_year = pd.Timestamp.now().year
-
+def card_expiry_month(n: int) -> np.ndarray:
     return np.random.choice(np.arange(1, 13), n)
 
 
-def generate_features(n):
+def generate_features(n: int) -> pd.DataFrame:
     return pd.DataFrame(
         {
             "payment_currency_code": payment_currency_code(n),
